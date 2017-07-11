@@ -1,11 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Build a Blog</h1>
 
-<div>
-    <h3>{{ post.title }}</h3>
-    <p>{{ post.body }}</p>
-</div>
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">{{ post.title }}</h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+            {{ post.body }}
+            <p>
+                <i>Written by <a href="/blog?user={{ post.user.username }}">{{ post.user.username }}</a>
+                    on {{ post.date }}
+                </i>
+            </p>
+        </div>
+    </div>
 
 {% endblock %}

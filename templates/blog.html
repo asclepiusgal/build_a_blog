@@ -1,21 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Build a Blog</h1>
 
     {% if posts|length == 0 %}
-    <p>No posts yet</p>
+        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+        <p>No posts yet</p>
     {% else %}
 
         <div>
             {% for post in posts %}
-            <h3>
-                <a href="./?id={{ post.id }}">{{ post.title }}</a>
-            </h3>
-            <p>{{ post.body }}</p>
-            <hr />
-            {% endfor %}
-        </div>
 
+                <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">{{ post.title }}</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        {{ post.body }}
+                        <p>
+                            <i>Written by <a href="/blog?user={{ post.user.username }}">{{ post.user.username }}</a>
+                                on {{ post.date }}
+                            </i>
+                        </p>
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                            <a href="/blog?id={{ post.id }}">Read post</a>
+                        </a>
+                    </div>
+                </div>
+
+                <br/>
+            {% endfor %}
+
+        </div>
     {% endif %}
 {% endblock %}

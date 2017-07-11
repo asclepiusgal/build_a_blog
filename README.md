@@ -1,51 +1,36 @@
-# Blog App
-## A simple Flask project for LC-101 students
+# Blog App Continued
+## A simple Full-Stack Flask web app for LC-101 students
 
 # _Implements_:
 
 - [Flask](http://flask.pocoo.org/) template rendering
-- manual form validation
-- HTTP routing & endpoints
-- HTML
+- [AMP HTML](https://www.ampproject.org/learn/overview/)
 - CSS
-- request
-- redirect
-- render_template (in place of jinja2)
-- mySQL database
-- SQLAlchemy 
+- [Google Material Design Lite](https://getmdl.io/)
+- mySQL database with SQLAlchemy
+- amp-form xhr inputs
 - cookie sessions
+- user authentication with brcypt password encryption with salt
+- flash messaging
+- Sketch custom vector favicon
 
 ***
 
-# SQLAlchemy setup
+# _Screenshots_:
 
-open python3 in terminal
->>> from main import db,Task 
->>> db
->>> db.create_all()  ### creates the DB using the specified columns
->>> new_task = Task('finish Lesson 2')
->>> db.session.add(new_task) 
->>> new_task_2 = Task('finish Lesson 3')
->>> db.session.add(new_task_2) 
->>> db.session.commit() ### adds the new_task variable to database
->>> tasks = task.query.all() ### selects everything from the database
->>> tasks[0].name = 'finish Lesson 2'
->>> db.session.delete(new_task_2)
->>> db.drop_all() ### drops all the tables
->>> db.create_all() ### creates the database with the new / added columns
-
-open mysql in another terminal window 
-> use blog; ## uses the blog database
-> show tables; ## shows the tables
-> describe task; ## shows the table columns
-> select * from task; ## shows the new data inserted into the table columns
+- ![](/static/img/blog.png)
+- ![](/static/img/drawer.png)
+- ![](/static/img/login.png)
+- ![](/static/img/new_post.png)
+- ![](/static/img/signup.png)
 
 ***
 
 ## _Sources_
 
-- _Project rubric_: [LC-101 Blog App](http://education.launchcode.org/web-fundamentals/assignments/build-a-blog/)
+- _Project rubric_: [LC-101 Blog App Continued](http://education.launchcode.org/web-fundamentals/assignments/blogz/)
+- _Image placeholders_: [PlaceBear.com](http://www.placebear.com)
 
 ***
 
-(c) June 2017
+(c) July 2017

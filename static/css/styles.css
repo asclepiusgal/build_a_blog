@@ -1,0 +1,88 @@
+.error {
+    color: red;
+}
+
+.demo-layout-transparent {
+    background: #fcc890;
+    height: 100%
+}
+
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
+    color: black;
+}
+
+.demo-card-wide.mdl-card {
+    width: 512px;
+}
+
+.demo-card-wide > .mdl-card__title {
+    color: #fff;
+    height: 176px;
+    background: url('https://placebear.com/g/1200/600') center / cover;
+}
+
+.demo-card-wide > .mdl-card__menu {
+    color: #fff;
+}
+
+#main-body {
+    height: 100%;
+    overflow: hidden;
+}
+
+.header, .footer {
+    height: 50px;
+}
+
+amp-boilerplate > body {
+    -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+    -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+    -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+    animation: -amp-start 8s steps(1, end) 0s 1 normal both
+}
+
+@-webkit-keyframes -amp-start {
+    from {
+        visibility: hidden
+    }
+    to {
+        visibility: visible
+    }
+}
+
+@-moz-keyframes -amp-start {
+    from {
+        visibility: hidden
+    }
+    to {
+        visibility: visible
+    }
+}
+
+@-ms-keyframes -amp-start {
+    from {
+        visibility: hidden
+    }
+    to {
+        visibility: visible
+    }
+}
+
+@-o-keyframes -amp-start {
+    from {
+        visibility: hidden
+    }
+    to {
+        visibility: visible
+    }
+}
+
+@keyframes -amp-start {
+    from {
+        visibility: hidden
+    }
+    to {
+        visibility: visible
+    }
+}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% if users|length == 0 %}
+        <p>No users yet</p>
+    {% else %}
+        <div>
+            {% for user in users %}
+
+                <div class="demo-list-action mdl-list">
+                <div class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons mdl-list__item-avatar">person</i>
+      <span><a href="./blog?user={{ user.username }}">{{ user.username }}</a></span>
+    </span>
+                </div>
+
+            {% endfor %}
+
+            </div>
+        </div>
+
+    {% endif %}
+
+{% endblock %}

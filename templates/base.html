@@ -1,27 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ⚡ lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="A blog app for LC-101 students">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="canonical" href="blog.html">
+
     <title>{{ title }}</title>
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='styles/styles.css') }}">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="shortcut icon" href="/static/img/favicon.ico">
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.deep_orange-light_blue.min.css"/>
+{#    <noscript>#}
+{#        <style amp-boilerplate>body {#}
+{#            -webkit-animation: none;#}
+{#            -moz-animation: none;#}
+{#            -ms-animation: none;#}
+{#            animation: none#}
+{#        }</style>#}
+{#    </noscript>#}
+{#    <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>#}
+{#    <script async src="https://cdn.ampproject.org/v0.js"></script>#}
 </head>
+
 <body>
 
-    <div>
-        <a href="/">Main Blog Page</a>
-        <a href="/new_post">Add a Blog Entry</a>
+<div class="demo-layout-transparent mdl-layout mdl-js-layout">
+    <header class="mdl-layout__header mdl-layout__header--transparent">
+        <div class="mdl-layout__header-row">
+            <span class="mdl-layout-title">{{ title }}</span>
+            <div class="mdl-layout-spacer"></div>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="/">Home</a>
+                <a class="mdl-navigation__link" href="/blog">Blog</a>
+                <a class="mdl-navigation__link" href="/new_post">New Post</a>
+                <a class="mdl-navigation__link" href="/login">Login</a>
+                <a class="mdl-navigation__link" href="/logout">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Build a Blog</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="/">Home</a>
+            <a class="mdl-navigation__link" href="/blog">Blog</a>
+            <a class="mdl-navigation__link" href="/new_post">New Post</a>
+            <a class="mdl-navigation__link" href="/login">Login</a>
+            <a class="mdl-navigation__link" href="/logout">Logout</a>
+        </nav>
     </div>
+</div>
 
-    {% with messages = get_flashed_messages(with_categories=True) %}
-        <ul>
-        {% for category,message in messages %}
-            <li class="{{ category }}">{{ message }}</li>
-        {% endfor %}
-         </ul>
-    {% endwith %}
+    <main class="mdl-layout__content">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--6-col">
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                    {% if messages %}
+                        <ul>
+                            {% for category, message in messages %}
+                                <li class="{{ category }}">{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
 
-    {%  block content %}
-    {% endblock %}
+                {% block content %}
+                {% endblock %}
 
+            </div>
+        </div>
+
+        <footer class="mdl-mini-footer">
+            <div class="mdl-mini-footer__left-section">
+                <div class="mdl-logo">Build a Blog</div>
+                <ul class="mdl-mini-footer__link-list">
+                    <li><a href="http://www.jeannaclark.com">Made with &hearts; in Seattle</a></li>
+                </ul>
+            </div>
+        </footer>
+    </main>
+
+<script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </body>
 </html>
