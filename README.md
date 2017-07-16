@@ -7,13 +7,13 @@
 - [AMP HTML](https://www.ampproject.org/learn/overview/)
 - CSS
 - [Google Material Design Lite](https://getmdl.io/)
-- mySQL database with SQLAlchemy
+- PostreSQL cloud-based database with SQLAlchemy
 - amp-form xhr inputs
 - cookie sessions
 - user authentication with brcypt password encryption with salt
 - flash messaging
 - Sketch custom vector favicon
-- [Heroku deployment](https://build-a-blog-app.herokuapp.com/) 
+- [Heroku](http://heroku.com) deployment [(live demo)](https://build-a-blog-app.herokuapp.com/) 
 - [Gunicorn](http://gunicorn.org/) WSGI HTTP Server
 
 ***

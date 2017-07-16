@@ -17,7 +17,7 @@
                     {{ post.body }}
                     <p>
                         <i>Written by <a href="/blog?user={{ post.user.username }}">{{ post.user.username }}</a>
-                            on {{ post.date }}
+                            on {{ post.date.strftime('%B %d, %Y') }}
                         </i>
                     </p>
                 </div>

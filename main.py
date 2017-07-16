@@ -13,6 +13,10 @@ from app import db, app
 from hashutils import make_hash, validate_password
 
 
+# TODO: update so Heroku works
+# TODO: update so AMP HTML / AMP forms work
+
+
 @app.before_request
 def require_login():
     allowed_routes = ['login', 'signup', 'blog', 'index']
@@ -29,9 +33,11 @@ def index():
     return render_template('index.html', title=title, users=users)
 
 
-@app.route('/blog', methods=['GET'])
-def blog():
+@app.route('/blog/', methods=['GET'], defaults={'page':1})
+@app.route('/blog/<int:page>', methods=['GET'])
+def blog(page):
     title = "Build a Blog"
+    posts_per_page = 4
 
     if request.args:
         post_id = request.args.get('id')
@@ -42,18 +48,17 @@ def blog():
             return render_template('one_post.html', title=title, post=post)
         elif username:
             user = User.query.filter_by(username=username).first()
-            posts = Blog.query.filter_by(owner_id=user.id).order_by(Blog.date.desc()).all()
-
+            posts = Blog.query.filter_by(owner_id=user.id).order_by(Blog.date.desc()).paginate(page, posts_per_page,
+                                                                                               False)
             return render_template('single_user.html', title=title, posts=posts)
     else:
-        posts = Blog.query.order_by(Blog.date.desc()).all()
-        # TODO: insert pagination for blog.html & single_user.html
+        posts = Blog.query.order_by(Blog.date.desc()).paginate(page, posts_per_page, False)
         return render_template('blog.html', title=title, posts=posts)
 
 
-@app.route('/new_post', methods=['POST', 'GET'])
-def new_post():
-    if request.method == ['POST']:
+@app.route('/newpost', methods=['POST', 'GET'])
+def newpost():
+    if request.method == 'POST':
         body = request.form['body']
         blog_title = request.form['title']
         owner = User.query.filter_by(username=session['username']).first()
@@ -64,7 +69,7 @@ def new_post():
             db.session.commit()
 
             flash('Post added', 'error')
-
+            url = "/blog?id=" + str(new_entry.id)
             return redirect(url)
         else:
             flash('Title and blog entry are required.', 'error')
@@ -79,6 +84,7 @@ def signup():
         username = request.form['username']
         password = request.form['password']
         verify_password = request.form['verify_password']
+        existing_user = User.query.filter_by(username=username).first()
 
         if (len(username) < 3) or (len(password) < 3):
             flash('Username & password must be greater than three characters', 'error')
@@ -89,7 +95,7 @@ def signup():
         elif (username == '') or (password == '') or (verify_password == ''):
             flash('blank input submission', 'error')
             redirect('/signup')
-        elif User.query.get(username).username == username:
+        elif existing_user:
             flash('already exists for that user', 'error')
             redirect('/login')
         else:
@@ -99,7 +105,7 @@ def signup():
 
             flash('Account created', '')
             session['username'] = username
-            redirect('/new_post')
+            redirect('/newpost')
 
     title = "Sign up"
     return render_template('signup.html', title=title)
@@ -116,7 +122,7 @@ def login():
             if validate_password(password, user.password):
                 session['username'] = username
                 flash('logged in', '')
-                return redirect('/new_post')
+                return redirect('/newpost')
         else:
             flash('invalid username or password', 'error')
             return redirect('/login')

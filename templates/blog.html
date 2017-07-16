@@ -1,37 +1,49 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <div>
+        {% if posts.items|length == 0 %}
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+            <p>No posts yet</p>
+        {% else %}
 
-    {% if posts|length == 0 %}
-        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-        <p>No posts yet</p>
-    {% else %}
+            <div>
+                {% for post in posts.items %}
+                    <div>
+                        <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title">
+                                <h2 class="mdl-card__title-text">{{ post.title }}</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                {{ post.body }}
+                                <p>
+                                    <i>Written by <a
+                                            href="/blog?user={{ post.user.username }}">{{ post.user.username }}</a>
+                                        on {{ post.date.strftime('%B %d, %Y') }}
+                                    </i>
+                                </p>
+                            </div>
 
-        <div>
-            {% for post in posts %}
-
-                <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">{{ post.title }}</h2>
+                            <div class="mdl-card__actions mdl-card--border">
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                    <a href="/blog?id={{ post.id }}">Read post</a>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mdl-card__supporting-text">
-                        {{ post.body }}
-                        <p>
-                            <i>Written by <a href="/blog?user={{ post.user.username }}">{{ post.user.username }}</a>
-                                on {{ post.date }}
-                            </i>
-                        </p>
-                    </div>
-                    <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                            <a href="/blog?id={{ post.id }}">Read post</a>
-                        </a>
-                    </div>
-                </div>
 
-                <br/>
-            {% endfor %}
+                    <br/>
+                {% endfor %}
+                {% if posts.has_prev %}
+                    <a href="{{ url_for('blog', page=posts.prev_num) }}">&lt;&lt; Newer posts</a>{% else %}&lt;&lt;
+                    Newer posts
+                {% endif %} |
+                {% if posts.has_next %}
+                    <a href="{{ url_for('blog', page=posts.next_num) }}">Older posts &gt;&gt;</a>{% else %}Older posts
+                    &gt;&gt;
+                {% endif %}
 
-        </div>
-    {% endif %}
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}
