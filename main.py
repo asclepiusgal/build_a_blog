@@ -9,7 +9,7 @@ __version__ = "1.0"
 
 from flask import request, render_template, redirect, session, flash
 from models import User, Blog
-from app import app, db
+from app import db, app
 from hashutils import make_hash, validate_password
 
 

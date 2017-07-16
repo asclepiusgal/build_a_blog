@@ -13,7 +13,8 @@
 - user authentication with brcypt password encryption with salt
 - flash messaging
 - Sketch custom vector favicon
-- [Heroku deployment](https://build-a-blog-app.herokuapp.com/)
+- [Heroku deployment](https://build-a-blog-app.herokuapp.com/) 
+- [Gunicorn](http://gunicorn.org/) WSGI HTTP Server
 
 ***
 
