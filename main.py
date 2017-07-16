@@ -64,7 +64,7 @@ def new_post():
             db.session.commit()
 
             flash('Post added', 'error')
-            url = "/?id=" + str(new_entry.id)
+
             return redirect(url)
         else:
             flash('Title and blog entry are required.', 'error')
