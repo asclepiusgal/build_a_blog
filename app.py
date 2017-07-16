@@ -9,11 +9,12 @@ __version__ = "1.0"
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 
 app = Flask(__name__, static_url_path='/static')
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost:3306/blog'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'mysql+pymysql://root:@localhost:3306/blog')
 app.config['SQLALCHEMY_ECHO'] = True
 app.secret_key = 'super_secret_key'
 app.static_folder = 'static'
