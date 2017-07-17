@@ -14,7 +14,6 @@ from hashutils import make_hash, validate_password
 
 
 # TODO: update so Heroku works
-# TODO: update so AMP HTML / AMP forms work
 
 
 @app.before_request
@@ -33,7 +32,7 @@ def index():
     return render_template('index.html', title=title, users=users)
 
 
-@app.route('/blog/', methods=['GET'], defaults={'page':1})
+@app.route('/blog/', methods=['GET'], defaults={'page': 1})
 @app.route('/blog/<int:page>', methods=['GET'])
 def blog(page):
     title = "Build a Blog"

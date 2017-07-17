@@ -4,11 +4,10 @@
 # _Implements_:
 
 - [Flask](http://flask.pocoo.org/) template rendering
-- [AMP HTML](https://www.ampproject.org/learn/overview/)
+- HTML
 - CSS
 - [Google Material Design Lite](https://getmdl.io/)
 - PostreSQL cloud-based database with SQLAlchemy
-- amp-form xhr inputs
 - cookie sessions
 - user authentication with brcypt password encryption with salt
 - flash messaging
