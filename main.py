@@ -13,9 +13,6 @@ from app import db, app
 from hashutils import make_hash, validate_password
 
 
-# TODO: update so Heroku works
-
-
 @app.before_request
 def require_login():
     allowed_routes = ['login', 'signup', 'blog', 'index']

@@ -11,6 +11,7 @@
 - cookie sessions
 - user authentication with brcypt password encryption with salt
 - flash messaging
+- Pagination
 - Sketch custom vector favicon
 - [Heroku](http://heroku.com) deployment [(live demo)](https://build-a-blog-app.herokuapp.com/) 
 - [Gunicorn](http://gunicorn.org/) WSGI HTTP Server
